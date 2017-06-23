@@ -138,6 +138,7 @@ function update() {
 function newGame() {
   console.log('#### NEW GAME ####');
   // I know there are better ways to do it
+  clearInterval(gameLoop);
   gameLoop = setInterval(() => {
     if (!paused && !gameOver) {
       update();
