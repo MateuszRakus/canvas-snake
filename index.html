@@ -1,132 +1,38 @@
 <html>
 
 <head>
-  <title>Snake Canvas</title>
+  <title>Retro Snake</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
-  <canvas id="game" width="400" height="400"></canvas>
-  <style>
-    #game {
-      border: 3px solid #000;
-    }
-  </style>
-  <script>
-    var canvas = document.getElementById('game');
-    var context = canvas.getContext('2d');
-    document.addEventListener('keydown', keyPush);
-
-    var posX = 0;
-    var posY = 0;
-    var velX = 1;
-    var velY = 0;
-    var tick = 10;
-    var speed = 10;
-    var tailLen = 20;
-    var tail = [];
-    var fruitX;
-    var fruitY;
-
-    newFruit();
-    setInterval(game, 1000 / speed);
-
-    function game() {
-      context.clearRect(0, 0, canvas.width, canvas.height);
-      posX += velX * tick;
-      posY += velY * tick;
-      checkIfInCanvas()
-      checkSnakeCollision();
-      tail.unshift({ x: posX, y: posY });
-      tail.splice(tailLen);
-      for (var i = 0; i < tail.length; i++) {
-        context.fillRect(tail[i].x, tail[i].y, tick, tick);
-      }
-      context.fillRect(fruitX, fruitY, 10, 10);
-      checkFruitCollision();
-    }
-
-    function newGame() {
-      console.log('#### NEW GAME ####');
-      posX = 0;
-      posY = 0;
-      velX = 1;
-      velY = 0;
-      tailLen = 20;
-      tail = [];
-      newFruit();
-    }
-
-    function checkIfInCanvas() {
-      if (posX >= canvas.width) {
-        posX = 0;
-      } else if (posX < 0) {
-        posX = canvas.width;
-      }
-      if (posY >= canvas.height) {
-        posY = 0;
-      } else if (posY < 0) {
-        posY = canvas.height;
-      }
-    }
-
-    function checkSnakeCollision() {
-      for (var i = 1; i < tail.length; i++) {
-        if (posX >= tail[i].x && posX < tail[i].x + tick
-          && posY >= tail[i].y && posY < tail[i].y + tick) {
-            console.log('#### SNAKE COLISION OCCURED ####');
-            newGame();
-        }
-      }
-    }
-
-    function checkFruitCollision() {
-      if (posX >= fruitX && posX < fruitX + tick
-        && posY >= fruitY && posY < fruitY + tick) {
-        console.log('#### FRUIT COLISION OCCURED ####');
-        tailLen++;
-        newFruit();
-      }
-    }
-
-    function newFruit() {
-      console.log('#### NEW FRUIT ####');
-      fruitX = Math.floor(Math.random() * canvas.width / tick) * tick;
-      fruitY = Math.floor(Math.random() * canvas.height / tick) * tick;
-    }
-
-    function keyPush(event) {
-      console.log(event.keyCode);
-      switch (event.keyCode) {
-        case 37:
-          if (velX === 0) {
-            velX = -1;
-            velY = 0;
-          }
-          break;
-        case 38:
-          if (velY === 0) {
-            velX = 0;
-            velY = -1;
-          }
-          break;
-        case 39:
-          if (velX === 0) {
-            velX = 1;
-            velY = 0;
-          }
-          break;
-        case 40:
-          if (velY === 0) {
-            velX = 0;
-            velY = 1;
-          }
-          break;
-
-        default:
-          break;
-      }
-    }
-  </script>
+  <header>
+    <h1>Retro Snake</h1>
+    <h2>Feeling old already? Just wait...</h2>
+  </header>
+  <div class="row">
+    <section class="game-section eight columns">
+      <canvas id="game" width="400" height="400"></canvas>
+      <div id="game-over-screen">
+        <h3>Game Over</h3>
+        <h3 id="new-highscore-label">NEW HIGHSCORE</h3>
+        <h4>Your Score: <span id="final-score">000000</span></h4>
+      </div>
+    </section>
+    <section class="menu-section four columns">
+      <div>
+          <h3>Score: <span id="current-score">000000</span></h3>
+          <h4>Highscore: <span id="current-highscore">000000</span></h4>
+      </div>
+      <div>
+        <button class="menu-button" id="new-game-button">New Game</button>
+        <button class="menu-button" id="pause-game-button">Pause Game</button>
+      </div>
+    </section>
+  </div>
+  <script src="./build/bundle.js" type="text/javascript"></script>
 </body>
 
 </html>
