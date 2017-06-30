@@ -128,6 +128,7 @@ function update() {
   checkSnakeCollision();
   tail.unshift({ x: posX, y: posY });
   tail.splice(tailLen);
+  context.fillStyle = "white";
   for (var i = 0; i < tail.length; i++) {
     context.fillRect(tail[i].x, tail[i].y, tick, tick);
   }
@@ -152,6 +153,7 @@ function newGame() {
   velX = 1;
   velY = 0;
   score = 0;
+  scoreString = '000000';
   scoreMultiplier = 0;
   tailLen = 20;
   tail = [];

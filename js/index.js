@@ -81,6 +81,7 @@ function newGame() {
   velX = 1;
   velY = 0;
   score = 0;
+  scoreString = '000000'
   scoreMultiplier = 0;
   tailLen = 20;
   tail = [];
