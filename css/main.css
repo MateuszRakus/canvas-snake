@@ -1,5 +1,33 @@
+body {
+  background: #000;
+}
+
+.text-header {
+  font-family: 'Press Start 2P', cursive;
+  color: #fff;
+  text-align: center;
+}
+
+.text-tooltip {
+  display: block;
+  font-family: 'Press Start 2P', cursive;
+  color: #fff;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.text-highlight{
+  color: greenyellow;
+}
+
+.page-header {
+  margin: 50px 0;
+}
+
 #game {
-  border: 3px solid #000;
+  border: 3px solid #fff;
+  display: block;
+  margin: 0 auto;
 }
 
 .game-section {
@@ -15,10 +43,22 @@
   display: none;
 }
 
-.menu-button{
+.menu-section {
+  padding: 0 2%;
+}
+
+.menu-button {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 0;
+  font-family: 'Press Start 2P', cursive;
+  color: #fff;
+}
+
+.menu-button:hover {
+  color: greenyellow;
+  border-color: greenyellow;
 }
 
 
