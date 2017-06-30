@@ -86,6 +86,7 @@ function newGame() {
   tailLen = 20;
   tail = [];
   gameOver = false;
+  currentScoreLabel.innerText = scoreString;
   newFruit();
   if (paused) {
     togglePauseGame();
