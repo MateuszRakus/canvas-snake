@@ -56,6 +56,7 @@ function update() {
   checkSnakeCollision();
   tail.unshift({x: posX, y: posY});
   tail.splice(tailLen);
+  context.fillStyle = "white";
   for (var i = 0; i < tail.length; i++) {
     context.fillRect(tail[i].x, tail[i].y, tick, tick);
   }
@@ -66,6 +67,7 @@ function update() {
 function newGame() {
   console.log('#### NEW GAME ####');
   // I know there are better ways to do it
+  clearInterval(gameLoop);
   gameLoop = setInterval(() => {
     if (!paused && !gameOver) {
       update();
