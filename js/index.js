@@ -8,6 +8,7 @@ document.addEventListener('keydown', keyPush);
 const tick = 10;
 const speed = 10;
 const scorePerPoint = 1;
+const debug = false;
 
 // GLOBAL VARIABLES
 let gameLoop;
@@ -65,7 +66,9 @@ function update() {
 }
 
 function newGame() {
-  console.log('#### NEW GAME ####');
+  if (debug) {
+    console.log('#### NEW GAME ####');
+  }
   // I know there are better ways to do it
   clearInterval(gameLoop);
   gameLoop = setInterval(() => {
@@ -95,7 +98,9 @@ function newGame() {
 
 function togglePauseGame() {
   if (!gameOver) {
-    console.log('#### GAME PAUSED ####', !paused);
+    if (debug) {
+      console.log('#### GAME PAUSED ####', !paused);
+    }
     paused = !paused;
     if (paused) {
       pauseGameButton.innerText = 'Unpause Game';
@@ -136,7 +141,9 @@ function checkIfInCanvas() {
 function checkSnakeCollision() {
   for (var i = 1; i < tail.length; i++) {
     if (posX >= tail[i].x && posX < tail[i].x + tick && posY >= tail[i].y && posY < tail[i].y + tick) {
-      console.log('#### SNAKE COLISION OCCURED ####');
+      if (debug) {
+        console.log('#### SNAKE COLISION OCCURED ####');
+      }
       endGame();
     }
   }
@@ -144,7 +151,9 @@ function checkSnakeCollision() {
 
 function checkFruitCollision() {
   if (posX >= fruitX && posX < fruitX + tick && posY >= fruitY && posY < fruitY + tick) {
-    console.log('#### FRUIT COLISION OCCURED ####');
+    if (debug) {
+      console.log('#### FRUIT COLISION OCCURED ####');
+    }
     tailLen++;
     addPoints();
     newFruit();
@@ -162,13 +171,17 @@ function addPoints() {
 }
 
 function newFruit() {
-  console.log('#### NEW FRUIT ####');
+  if (debug) {
+    console.log('#### NEW FRUIT ####');
+  }
   fruitX = Math.floor(Math.random() * canvas.width / tick) * tick;
   fruitY = Math.floor(Math.random() * canvas.height / tick) * tick;
 }
 
 function keyPush(event) {
-  console.log(event.keyCode);
+  if (debug) {
+    console.log(event.keyCode);
+  }
   switch (event.keyCode) {
     case 37:
       if (velX === 0) {
